@@ -7,7 +7,7 @@ authors = ["cmungall <cjm@berkeleybop.org>"]
 [tool.poetry.dependencies]
 python = "^3.9"
 py4j = "^0.10.9"
-oaklib = "^0.1.16"
+oaklib = "^0.1.37"
 
 [tool.poetry.dev-dependencies]
 pytest = "^5.2"
