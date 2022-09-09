@@ -104,7 +104,7 @@ python-versions = "*"
 
 [[package]]
 name = "bioregistry"
-version = "0.4.115"
+version = "0.5.92"
 description = "Integrated registry of biological databases and nomenclatures"
 category = "main"
 optional = false
@@ -112,6 +112,7 @@ python-versions = ">=3.6"
 
 [package.dependencies]
 click = "*"
+curies = "*"
 more-click = "*"
 pydantic = "*"
 pystow = ">=0.1.13"
@@ -119,12 +120,12 @@ requests = "*"
 tqdm = "*"
 
 [package.extras]
-align = ["pyyaml", "beautifulsoup4", "tabulate", "defusedxml"]
-charts = ["matplotlib", "matplotlib-venn", "seaborn"]
+align = ["pyyaml", "beautifulsoup4", "tabulate", "defusedxml", "class-resolver"]
+charts = ["matplotlib", "matplotlib-venn", "seaborn", "pandas"]
 docs = ["sphinx", "sphinx-rtd-theme", "sphinx-click", "sphinx-autodoc-typehints", "sphinx-automodapi", "autodoc-pydantic"]
-export = ["pyyaml", "rdflib", "rdflib-jsonld"]
+export = ["pyyaml", "rdflib", "rdflib-jsonld", "ndex2"]
 gha = ["more-itertools"]
-health = ["click-default-group", "pandas"]
+health = ["click-default-group", "pandas", "tabulate"]
 tests = ["coverage", "pytest", "more-itertools"]
 web = ["pyyaml", "rdflib", "rdflib-jsonld", "flask", "flasgger", "bootstrap-flask (<=2.0.0)", "markdown"]
 
@@ -204,6 +205,22 @@ python-versions = "*"
 test = ["flake8 (==3.7.8)", "hypothesis (==3.55.3)"]
 
 [[package]]
+name = "curies"
+version = "0.1.5"
+description = "Idiomatic conversion between URIs and compact URIs (CURIEs)."
+category = "main"
+optional = false
+python-versions = ">=3.7"
+
+[package.dependencies]
+pytrie = "*"
+requests = "*"
+
+[package.extras]
+tests = ["coverage", "pytest"]
+docs = ["sphinx-automodapi", "sphinx-autodoc-typehints", "sphinx-rtd-theme", "sphinx"]
+
+[[package]]
 name = "decorator"
 version = "5.1.1"
 description = "Decorators for Humans"
@@ -262,7 +279,7 @@ python-versions = ">=3.7"
 
 [[package]]
 name = "fsspec"
-version = "2022.8.1"
+version = "2022.8.2"
 description = "File-system specification"
 category = "main"
 optional = false
@@ -347,7 +364,7 @@ python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*"
 
 [[package]]
 name = "importlib-metadata"
-version = "4.11.3"
+version = "4.12.0"
 description = "Read metadata from Python packages"
 category = "main"
 optional = false
@@ -359,7 +376,7 @@ zipp = ">=0.5"
 [package.extras]
 docs = ["sphinx", "jaraco.packaging (>=9)", "rst.linker (>=1.9)"]
 perf = ["ipython"]
-testing = ["pytest (>=6)", "pytest-checkdocs (>=2.4)", "pytest-flake8", "pytest-cov", "pytest-enabler (>=1.0.1)", "packaging", "pyfakefs", "flufl.flake8", "pytest-perf (>=0.9.2)", "pytest-black (>=0.3.7)", "pytest-mypy (>=0.9.1)", "importlib-resources (>=1.3)"]
+testing = ["pytest (>=6)", "pytest-checkdocs (>=2.4)", "pytest-flake8", "pytest-cov", "pytest-enabler (>=1.3)", "packaging", "pyfakefs", "flufl.flake8", "pytest-perf (>=0.9.2)", "pytest-black (>=0.3.7)", "pytest-mypy (>=0.9.1)", "importlib-resources (>=1.3)"]
 
 [[package]]
 name = "isodate"
@@ -446,26 +463,27 @@ format_nongpl = ["fqdn", "idna", "isoduration", "jsonpointer (>1.13)", "rfc3339-
 
 [[package]]
 name = "kgcl-rdflib"
-version = "0.2.0"
+version = "0.3.0"
 description = "Schema fro the KGCL project."
 category = "main"
 optional = false
 python-versions = ">=3.8,<4.0"
 
 [package.dependencies]
-kgcl-schema = ">=0.2.0,<0.3.0"
+kgcl-schema = ">=0.3.0,<0.4.0"
 lark = ">=1.1.2,<2.0.0"
 linkml-runtime = ">=1.1.24,<2.0.0"
 
 [[package]]
 name = "kgcl-schema"
-version = "0.2.0"
+version = "0.3.0"
 description = "Schema for the KGCL project."
 category = "main"
 optional = false
 python-versions = ">=3.8,<4.0"
 
 [package.dependencies]
+bioregistry = ">=0.5.49,<0.6.0"
 lark = ">=1.1.2,<2.0.0"
 linkml-runtime = ">=1.1.24,<2.0.0"
 
@@ -579,7 +597,7 @@ viz = ["pygraphviz"]
 
 [[package]]
 name = "oaklib"
-version = "0.1.37"
+version = "0.1.41"
 description = "Ontology Access Kit: Python library for common ontology operations over a variety of backends"
 category = "main"
 optional = false
@@ -587,15 +605,18 @@ python-versions = ">=3.9,<4.0"
 
 [package.dependencies]
 appdirs = ">=1.4.4,<2.0.0"
+bioregistry = ">=0.5.64,<0.6.0"
 class-resolver = ">=0.3.10,<0.4.0"
+curies = ">=0.1.5,<0.2.0"
 funowl = ">=0.1.12,<0.2.0"
-kgcl-rdflib = ">=0.2.0,<0.3.0"
-kgcl-schema = ">=0.2.0,<0.3.0"
+kgcl-rdflib = ">=0.3.0,<0.4.0"
+kgcl-schema = ">=0.3.0,<0.4.0"
 lark = ">=1.1.2,<2.0.0"
 linkml-runtime = ">=1.2.15,<2.0.0"
 networkx = ">=2.7.1,<3.0.0"
 nxontology = ">=0.4.0,<0.5.0"
 ontoportal-client = "0.0.3"
+prefixmaps = ">=0.1.2,<0.2.0"
 pronto = ">=2.5.0,<3.0.0"
 pystow = ">=0.4.4,<0.5.0"
 ratelimit = ">=2.2.1,<3.0.0"
@@ -694,6 +715,18 @@ requests = "*"
 
 [package.extras]
 test = ["pytest"]
+
+[[package]]
+name = "prefixmaps"
+version = "0.1.3"
+description = ""
+category = "main"
+optional = false
+python-versions = ">=3.7.6,<4.0.0"
+
+[package.dependencies]
+importlib-metadata = ">=4.12.0,<5.0.0"
+PyYAML = ">=6.0,<7.0"
 
 [[package]]
 name = "pronto"
@@ -829,6 +862,17 @@ python-versions = "!=3.0.*,!=3.1.*,!=3.2.*,>=2.7"
 
 [package.dependencies]
 six = ">=1.5"
+
+[[package]]
+name = "pytrie"
+version = "0.4.0"
+description = "A pure Python implementation of the trie data structure."
+category = "main"
+optional = false
+python-versions = "*"
+
+[package.dependencies]
+sortedcontainers = "*"
 
 [[package]]
 name = "pytz"
@@ -989,6 +1033,14 @@ python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*"
 name = "snowballstemmer"
 version = "2.2.0"
 description = "This package provides 29 stemmers for 28 languages generated from Snowball algorithms."
+category = "main"
+optional = false
+python-versions = "*"
+
+[[package]]
+name = "sortedcontainers"
+version = "2.4.0"
+description = "Sorted Containers -- Sorted List, Sorted Dict, Sorted Set"
 category = "main"
 optional = false
 python-versions = "*"
@@ -1318,7 +1370,7 @@ testing = ["pytest (>=6)", "pytest-checkdocs (>=2.4)", "pytest-flake8", "pytest-
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.9"
-content-hash = "1bd38fe194466b3d178f4f7a7b34e8b439b213b20080edb37f5c23fd8fd2d2fc"
+content-hash = "29c3bf1b2ac28bccf50d8b1f017c584a357f8f86da48ddab618c12c4daca506e"
 
 [metadata.files]
 aiohttp = []
@@ -1339,6 +1391,7 @@ class-resolver = []
 click = []
 colorama = []
 commonmark = []
+curies = []
 decorator = []
 deprecated = []
 deprecation = []
@@ -1377,6 +1430,7 @@ pandas = []
 pandasql = []
 pluggy = []
 prefixcommons = []
+prefixmaps = []
 pronto = []
 py = []
 py4j = []
@@ -1388,6 +1442,7 @@ pyrsistent = []
 pystow = []
 pytest = []
 python-dateutil = []
+pytrie = []
 pytz = []
 pyyaml = []
 ratelimit = []
@@ -1402,6 +1457,7 @@ scipy = []
 semsql = []
 six = []
 snowballstemmer = []
+sortedcontainers = []
 sparqlwrapper = []
 sphinx = []
 sphinxcontrib-applehelp = []
