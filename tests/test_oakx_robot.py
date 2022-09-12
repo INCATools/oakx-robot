@@ -1,12 +1,15 @@
+import os
 import unittest
 
-from oaklib.selector import get_resource_from_shorthand, discovered_plugins, get_implementation_from_shorthand
+from oaklib.selector import get_resource_from_shorthand, get_implementation_from_shorthand
+from oaklib.implementations import discovered_plugins
 from oakx_robot.robot_implementation import RobotImplementation, OWL_NOTHING
 
 from tests import NUCLEUS
 
-TEST_OWL = 'tests/input/go-nucleus.owl'
-TEST_UNSAT_OWL = 'tests/input/go-nucleus-unsat.owl'
+DIR = os.path.dirname(os.path.realpath(__file__)) + '/'
+TEST_OWL = DIR + 'input/go-nucleus.owl'
+TEST_UNSAT_OWL = DIR + 'input/go-nucleus-unsat.owl'
 
 class TestSqlDatabaseImplementation(unittest.TestCase):
 
