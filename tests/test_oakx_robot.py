@@ -2,7 +2,7 @@ import os
 import unittest
 
 from oaklib.selector import get_resource_from_shorthand, get_implementation_from_shorthand
-from oaklib.implementations import discovered_plugins
+from oaklib.implementations import implementation_resolver
 from oakx_robot.robot_implementation import RobotImplementation, OWL_NOTHING
 
 from tests import NUCLEUS
@@ -18,8 +18,8 @@ class TestSqlDatabaseImplementation(unittest.TestCase):
         self.unsat_oi = get_implementation_from_shorthand(f'robot:{TEST_UNSAT_OWL}')
 
     def test_plugin(self):
-        plugins = discovered_plugins
-        self.assertIn('oakx_robot', plugins)
+        resolved = implementation_resolver.lookup("robot")
+        self.assertEqual(resolved, RobotImplementation)
         slug = f'robot:{TEST_OWL}'
         r = get_resource_from_shorthand(slug)
         self.assertEqual(r.implementation_class, RobotImplementation)
